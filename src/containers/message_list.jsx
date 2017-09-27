@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import Message from '../components/message';
+
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+// Import actions
+import { setMessages } from '../actions';
+
 class MessageList extends Component {
+
+  componentWillMount() {
+    this.props.setMessages();
+  }
+
   render() {
     const renderMessageList = this.props.messages.map((message) => {
-        return <Message key={`${message.created_at}${message.author}`} message={message}/>
+      return <Message key={`${message.created_at}${message.author}`} message={message} />;
     });
 
     return(
@@ -22,7 +32,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(MessageList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { setMessages: setMessages },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageList);
 
 
 
