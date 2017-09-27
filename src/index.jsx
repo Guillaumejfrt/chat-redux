@@ -10,7 +10,7 @@ import App from './components/app';
 import '../assets/stylesheets/application.scss';
 
 // import reducers
-import channelsReducer from './reducers/channels_reducer';
+import channelListReducer from './reducers/channel_list_reducer';
 import selectedChannelReducer from './reducers/selected_channel_reducer';
 import messagesReducer from './reducers/messages_reducer';
 import currentUserReducer from './reducers/current_user_reducer';
@@ -30,14 +30,14 @@ const firstMessages = [
 
 const initialState = {
   messages: firstMessages,
-  channels: [ 'general', 'react', 'paris' ],
-  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  channelList: [ 'general', 'react', 'paris' ],
+  currentUser: 'guigui', // prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
   selectedChannel: 'general'
 };
 
 // State and reducers
 const reducers = combineReducers({
-  channels: channelsReducer,
+  channelList: channelListReducer,
   selectedChannel: selectedChannelReducer,
   messages: messagesReducer,
   currentUser: currentUserReducer

@@ -14,6 +14,14 @@ class MessageList extends Component {
     this.props.setMessages();
   }
 
+  componentDidMount() {
+    // setinterval(() => { this.props.setMessages ,1000})
+  }
+
+  componentWillUnmount() {
+
+  }
+
   render() {
     const renderMessageList = this.props.messages.map((message) => {
       return <Message key={`${message.created_at}${message.author}`} message={message} />;
