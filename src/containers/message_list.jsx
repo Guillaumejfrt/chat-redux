@@ -15,7 +15,6 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
-    // setinterval(() => { this.props.setMessages, 1000 });
     this.refresher = setInterval( () => {
       this.props.setMessages(this.props.selectedChannel)
     }, 1000);
@@ -25,13 +24,17 @@ class MessageList extends Component {
     this.refresher.clearInterval();
   }
 
+  componentDidUpdate() {
+    this.messageListDiv.scrollTop = this.messageListDiv.scrollHeight;
+  }
+
   render() {
     const renderMessageList = this.props.messages.map((message) => {
       return <Message key={`${message.created_at}${message.author}`} message={message} />;
     });
 
     return(
-      <div className="message-list">
+      <div className="message-list" ref={(div) => { this.messageListDiv = div; }}>
         {renderMessageList}
       </div>
     );

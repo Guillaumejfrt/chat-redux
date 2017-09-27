@@ -1,7 +1,14 @@
+body {
+  overflow: hidden;
+}
 .app {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 .channel-list p {
   cursor: pointer;
+}
+.message-list {
+  height: 100vh;
+  overflow-y: scroll;
 }

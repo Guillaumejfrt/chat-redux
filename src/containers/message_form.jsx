@@ -23,10 +23,28 @@ class MessageForm extends Component {
     this.setState({value: ''});
   }
 
+  componentDidMount() {
+    this.textInput.focus();
+  }
+
+  // componentDidUpdate(){
+  //   this.textInput.focus();
+  // }
+
+  // shouldComponentUpdate() {
+  //   return true;
+  // }
+
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
-        <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange}/>
+        <input
+          type="text"
+          className="form-control"
+          value={this.state.value}
+          onChange={this.handleChange}
+          ref={(input) => { this.textInput = input; }} />
+
         <input type="submit" value="Send"/>
       </form>
     );
