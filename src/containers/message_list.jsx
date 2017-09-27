@@ -11,15 +11,18 @@ import { setMessages } from '../actions';
 class MessageList extends Component {
 
   componentWillMount() {
-    this.props.setMessages();
+    this.props.setMessages(this.props.selectedChannel);
   }
 
   componentDidMount() {
-    // setinterval(() => { this.props.setMessages ,1000})
+    // setinterval(() => { this.props.setMessages, 1000 });
+    this.refresher = setInterval( () => {
+      this.props.setMessages(this.props.selectedChannel)
+    }, 1000);
   }
 
   componentWillUnmount() {
-
+    this.refresher.clearInterval();
   }
 
   render() {
@@ -37,7 +40,8 @@ class MessageList extends Component {
 
 function mapStateToProps(state) {
   return {
-    messages: state.messages
+    messages: state.messages,
+    selectedChannel: state.selectedChannel
   };
 }
 

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // Import actions
-import { createMessage } from '../actions';
+import { createMessage, selectChannel } from '../actions';
 
 class MessageForm extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class MessageForm extends Component {
 
   handleSubmit= (event) => {
     event.preventDefault();
-    this.props.createMessage('general', this.props.currentUser, this.state.value);
+    this.props.createMessage(this.props.channel, this.props.currentUser, this.state.value);
     this.setState({value: ''});
   }
 
@@ -35,13 +35,14 @@ class MessageForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    channel: state.selectedChannel
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { createMessage: createMessage },
+    {createMessage: createMessage},
     dispatch
   );
 }
