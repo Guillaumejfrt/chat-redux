@@ -4,9 +4,16 @@ body {
 .app {
   margin-top: 20px;
   margin-bottom: 20px;
+  display: flex;
 }
 .channel-list p {
   cursor: pointer;
+}
+.channel-list {
+  display:flex;
+  flex-direction: column;
+  width:110px;
+  margin-top: 110px;
 }
 .message-list {
   height: 100vh;

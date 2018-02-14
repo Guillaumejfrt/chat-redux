@@ -15,6 +15,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
+    debugger
     this.refresher = setInterval( () => {
       this.props.setMessages(this.props.selectedChannel)
     }, 1000);
